@@ -8,10 +8,18 @@ TODOs:
     can be used again. Maybe it could populate a separate box with several suggestions?
     These suggestions could maybe be based on similarity score. For instance, the card "Disperse"
     often gets suggested if the name contains "Dispersal", so it should populate that box with
-    cards with Disperse and Dispersal in the name.
+    cards with Disperse and Dispersal in the name. (Gravity Negator was consistently detected as Megatog,
+    Hightide Hermit was detected as High Tide, Jeskai Windscout as Windscouter, as Glarecaster)
 - Ask to save before closing if any cards in detection
 - For collection management, robust filtering
 - Populate with Scryfall data
 - Add attribute to card data for physical location within collection
 - Possibly add condition? I'm not sure there's a great way to automate this, but it could be nice to have
-- A SQLite DB should be enough for most collections? This would support collection management nicely
+- For collection mgmt, a SQLite DB should be enough for most collections
+- Ouptut the detected name above the card. Possibly hange from red top green maybe. That way it's easier to confirm correct detection
+- If detection (enter is pressed, yes key is hit, whatever), the populated text shouldn't change until 
+    the card in frame changes. Once agian, this would require detection of when the card in frame changes.
+
+
+Known limitations:
+Your mileage may vary with white text
