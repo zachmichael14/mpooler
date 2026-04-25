@@ -1,7 +1,7 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.base import Base
+from data.orm.base import Base
 
 class LocationORM(Base):
     """

@@ -1,0 +1,25 @@
+import sqlalchemy.types as types
+from sqlalchemy import String
+
+from models.color_set import ColorSet
+
+class ColorSetType(types.TypeDecorator):
+    """
+    Template taken from https://docs.sqlalchemy.org/en/21/core/custom_types.html
+    """
+    impl = String
+    cache_ok = True
+
+    def process_bind_param(self,
+                           value: ColorSet | None,
+                           dialect) -> str | None:
+        if value is None:
+            return None
+        return ",".join(value.to_string_list())
+    
+    def process_result_value(self,
+                             value: str | None,
+                             dialect) -> ColorSet | None:
+        if not value:
+            return ColorSet()
+        return ColorSet.from_string_list(value.split(","))
