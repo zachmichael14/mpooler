@@ -1,7 +1,8 @@
 from pathlib import Path
+import uuid
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from sqlalchemy import create_engine, Uuid
+from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
 
 
 DATABASE_PATH = Path("data/collection.db")
@@ -16,4 +17,6 @@ Session = sessionmaker(bind=engine)
 
 
 class Base(DeclarativeBase):
-    pass
+    id: Mapped[uuid.UUID] = mapped_column(Uuid,
+                                          primary_key=True,
+                                          default=uuid.uuid4)
