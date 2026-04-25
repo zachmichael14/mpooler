@@ -12,5 +12,6 @@ class ManaColor(Enum):
 
 @dataclass
 class Color:
+    """TODO: How to handle colorless? It's not a color, so adding it here seems inappropriate. Maybe just a lack of colors (length == 0) is adequate"""
     # default_factory creates an empty set of ManaColors upon instantiation
     colors: set[ManaColor] = field(default_factory=set)
