@@ -3,7 +3,7 @@ from uuid import UUID
 
 from models.color_set import ColorSet
 
-# TODO: Maybe format should be it's own model? That seems like it might 
+# TODO: Maybe format should be its own model? That seems like it might 
 # encapsulate rules and legality better.
 # I only play commmander and eternal/casual, so it's not necessary for now
 @dataclass
@@ -12,5 +12,3 @@ class Deck:
     name: str
     format: str
     colors: ColorSet = field(default_factory=ColorSet)
-
-
