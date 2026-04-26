@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "mpooler"
+version = "0.1.0"
+description = "Magical TCG collection management aid"
+authors = ["Zach <zachmichael14@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.15"
+pyside6 = "^6.11.0"
+sqlalchemy = "*"
+alembic = "*"
+opencv-python = "^4.13.0.92"
+pytesseract = "^0.3.13"
+pandas = "^3.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
