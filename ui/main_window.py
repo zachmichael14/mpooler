@@ -1,9 +1,14 @@
 from PySide6.QtWidgets import (
     QLabel,
     QMainWindow,
+    QSplitter,
     QTabWidget,
     QWidget,
 )
+
+from PySide6.QtCore import Qt
+
+from ui.sidebar import Sidebar
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,8 +17,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("~ MPooler ~")
         self.resize(800, 600)
 
-        central_widget = QTabWidget(self)
-        self.setCentralWidget(central_widget)
+        central_splitter = QSplitter(Qt.Orientation.Horizontal)
+        self.setCentralWidget(central_splitter)
 
-        tab_placeholder1 = QLabel("Am tab")
-        central_widget.addTab(tab_placeholder1, "Placeholder")
+        self._sidebar = Sidebar()
+        central_splitter.addWidget(self._sidebar)
