@@ -19,7 +19,12 @@ TODOs:
 - Ouptut the detected name above the card. Possibly hange from red top green maybe. That way it's easier to confirm correct detection
 - If detection (enter is pressed, yes key is hit, whatever), the populated text shouldn't change until 
     the card in frame changes. Once agian, this would require detection of when the card in frame changes.
-
+- For keywords, a JSON seeded datbase table might be the way to go since there is the json file of keywords.
+    it would be instatiated on startup
 
 Known limitations:
-Your mileage may vary with white text
+Your mileage may vary when scanning white text
+
+
+
+Database
