@@ -9,14 +9,23 @@ from sqlalchemy import (
     Text,
     Uuid
 )
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.orm.base import Base
+from data.base import Base
 from data.orm.types import ColorSetType, ConditionType
 from models.condition import Condition
 from models.color_set import ColorSet
 
 class CardORM(Base):
+    """
+    This is a combination of select fields from the Scryfall API
+    and internal fields.
+
+    TODO:     there's not currently a way to specify if a card is 
+    borderless/foil/full-art, etc. Also, I'm not really sure what 
+    fields will be useful here, but I'm not trying to store all 
+    scryfall info.
+    """
     __tablename__ = "cards"
 
     location_id: Mapped[uuid.UUID] = mapped_column(Uuid,
@@ -59,3 +68,6 @@ class CardORM(Base):
     artists: Mapped[str | None] = mapped_column(Text)
     is_reserved: Mapped[bool] = mapped_column(Boolean,
                                               default=False)
+
+    location: Mapped["LocationORM"] = relationship(back_populates="cards")
+    deck: Mapped["DeckORM | None"] = relationship(back_populates="cards")

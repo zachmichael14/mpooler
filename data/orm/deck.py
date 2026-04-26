@@ -3,12 +3,17 @@ import uuid
 from sqlalchemy import ForeignKey, String, Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.orm.base import Base
+from data.base import Base
 from data.orm.types import ColorSetType
 from models.color_set import ColorSet
 
 
 class DeckORM(Base):
+    """
+    TODO: Maybe format should be its own model? That seems like it might 
+    encapsulate rules and card legality better.
+    I only play commmander and eternal/casual though, so meh.
+    """
     __tablename__ = "decks"
 
     location_id: Mapped[uuid.UUID] = mapped_column(Uuid,
