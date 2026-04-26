@@ -1,13 +1,11 @@
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QLabel,
     QMainWindow,
     QSplitter,
     QStackedWidget,
-    QTabWidget,
     QWidget,
 )
-
-from PySide6.QtCore import Qt
 
 from ui.sidebar import Sidebar
 
@@ -22,7 +20,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_splitter)
 
         self._sidebar = Sidebar()
-        self._sidebar.sig_button_clicked.connect(self._handle_sidebar_change)
+        self._sidebar.sig_button_clicked.connect(self._on_sidebar_change)
         central_splitter.addWidget(self._sidebar)
 
         self._content_area = QStackedWidget()
@@ -34,16 +32,14 @@ class MainWindow(QMainWindow):
         scan_placeholder = QLabel("Scan placeholder")
         self._content_area.addWidget(scan_placeholder)
 
-
         # Note: keys must match button signal string from sidebar
         self._content_panels: dict[str, QWidget] = {}
         self._content_panels["collection"] = collection_placeholder
         self._content_panels["scan"] = scan_placeholder
 
 
-    def _handle_sidebar_change(self, content_name: str) -> None:
+    def _on_sidebar_change(self, content_name: str) -> None:
         new_content = self._content_panels.get(content_name)
-        print(new_content)
 
         # Prevent change if there's an error
         if new_content is not None:
