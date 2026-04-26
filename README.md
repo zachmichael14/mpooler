@@ -21,10 +21,19 @@ TODOs:
     the card in frame changes. Once agian, this would require detection of when the card in frame changes.
 - For keywords, a JSON seeded datbase table might be the way to go since there is the json file of keywords.
     it would be instatiated on startup
+- Wishlist for cards
 
 Known limitations:
 Your mileage may vary when scanning white text
 
 
 
-Database
+Database (MVP is pretty much finished)
+
+In my mind, a minimum collection management database needs to be able to handle two broad situations:
+    1) cards in decks
+    2) cards not in decks
+
+As such, the first object to respresent in the database is obviously a `Card` entity. Every other database object is likely to support `Card` organization/characterization in some capacity. The next obvious entity is a `Deck`. 
+
+The third entity is `Location`, and effectively represents where in a collection a card is physically stored. I orinally considered `Deck` to be a subtype of `Location` since a card in a deck is not elsewhere in a collection and vice versa. However, this does not allow `Deck` objects to be stored, and I thought it reasonable someone might store decks separately (ex., in separate boxes according to format). so keeping them separate affords this flexibility. 
