@@ -44,10 +44,18 @@ class Sidebar(QWidget):
 
     def _on_sub_option_changed(self, current_option: QListWidgetItem) -> None:
         selection = current_option.text().casefold()
+        self._sub_options.setVisible(selection == "collection")
+
         self.sig_sub_option_changed.emit(selection)
 
     def _on_collection_clicked(self) -> None:
         self.sig_button_clicked.emit("collection")
+        # only show sub-options when collection mgmt is selected
+        self._sub_options.setVisible(True)
 
     def _on_scan_clicked(self) -> None:
         self.sig_button_clicked.emit("scan")
+        # only show sub-options when collection mgmt is selected
+
+        self._sub_options.setVisible(False)
+
