@@ -13,6 +13,9 @@ class ColorSetType(types.TypeDecorator):
     def process_bind_param(self,
                            value: ColorSet | None,
                            dialect) -> str | None:
+        """
+        When writing to the database, convert ColorSet to string.
+        """
         if value is None:
             return None
         return ",".join(value.to_string_list())
@@ -20,6 +23,9 @@ class ColorSetType(types.TypeDecorator):
     def process_result_value(self,
                              value: str | None,
                              dialect) -> ColorSet | None:
+        """
+        When reading from the database, convert string to ColorSet.
+        """
         if not value:
             return ColorSet()
         return ColorSet.from_string_list(value.split(","))
