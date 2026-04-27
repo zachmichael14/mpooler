@@ -9,6 +9,8 @@ from PySide6.QtWidgets import (
 
 from ui.sidebar import Sidebar
 
+from ui.location_panel import LocationPanel
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -26,24 +28,24 @@ class MainWindow(QMainWindow):
         self._content_area = QStackedWidget()
         central_splitter.addWidget(self._content_area)
 
-        location_placeholder = QLabel("Location placeholder")
-        self._content_area.addWidget(location_placeholder)
+        location_panel = LocationPanel()
+        self._content_area.addWidget(location_panel)
 
-        card_placeholder = QLabel("Card placeholder")
-        self._content_area.addWidget(card_placeholder)
+        card_panel = QLabel("Card placeholder")
+        self._content_area.addWidget(card_panel)
 
-        deck_placeholder = QLabel("Deck placeholder")
-        self._content_area.addWidget(deck_placeholder)
+        deck_panel = QLabel("Deck placeholder")
+        self._content_area.addWidget(deck_panel)
 
-        scan_placeholder = QLabel("Scan placeholder")
-        self._content_area.addWidget(scan_placeholder)
+        scan_panel = QLabel("Scan placeholder")
+        self._content_area.addWidget(scan_panel)
 
         # Note: keys must match button signal string from sidebar
         self._content_panels: dict[str, QWidget] = {}
-        self._content_panels["storage locations"] = location_placeholder
-        self._content_panels["cards"] = card_placeholder
-        self._content_panels["decks"] = deck_placeholder
-        self._content_panels["scan"] = scan_placeholder
+        self._content_panels["storage locations"] = location_panel
+        self._content_panels["cards"] = card_panel
+        self._content_panels["decks"] = deck_panel
+        self._content_panels["scan"] = scan_panel
 
     def _on_sidebar_change(self, content_name: str) -> None:
         new_content = self._content_panels.get(content_name)
