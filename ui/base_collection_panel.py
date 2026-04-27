@@ -23,7 +23,9 @@ class BaseCollectionPanel(QWidget):
         toolbar = self._build_toolbar()
         central_layout.addWidget(toolbar)
 
-        splitter = QSplitter(Qt.Orientation.Vertical)
+        splitter = QSplitter(Qt.Orientation.Horizontal)
+
+        left_pane = self._build_left_pane()
 
         self._object_list = QListWidget()
         # TODO: Connect this change to signal
